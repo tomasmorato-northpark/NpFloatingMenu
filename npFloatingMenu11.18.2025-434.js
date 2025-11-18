@@ -98,8 +98,7 @@ javascript:(function(){
     let html = `<strong>${branchNameText}</strong> - ${branchCodes[branchNameText] || ""}<br><br>`;
     nums.forEach(n=>{
         html += `<a href="tel:${n}" style="color:gold;text-decoration:none;display:block;margin-bottom:4px;">${n}</a>`;
-        html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:block;text-align:center;margin-bottom:2px;text-decoration:none;">Viber Chat</a>`;
-        html += `<a href="viber://call?number=${n}" style="color:white;background:#8f5db7;padding:6px 8px;border-radius:6px;display:block;text-align:center;margin-bottom:6px;text-decoration:none;">Viber Call</a>`;
+        html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:block;text-align:center;margin-bottom:6px;text-decoration:none;">Viber Chat</a>`;
     });
 
     box.innerHTML = html;
