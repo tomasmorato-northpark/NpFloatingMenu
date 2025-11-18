@@ -24,33 +24,37 @@
         "PGV":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=16",
         "SGV":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=17",
         "BIC":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=18",
-        "HMM":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=19"
+        "HMM":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=19",
+        "MUN":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=20",
+        "VAL":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=21",
+        "WST":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=22"
     };
 
     // Branch contacts
     const contacts = {
-        "North Park SM Hypermart Antipolo":"84251921 / 85709483 / 85709483 / 9199146896 / 9156141510",
-        "North Park Banawe":"82440919 / 87117648 / 9199142203 / 9156136104",
-        "North Park G. Araneta (QI)":"87111338 / 87111338 / 9285021173 / 9156123830",
-        "North Park SM Hypermart Cainta":"85713311 / No landline / 9199146891 / 9156141520",
-        "North Park Jetti Macapagal":"9688548561",
-        "North Park Hypermarket EDSA":"84414356 / 9199134578 / 9156136198",
-        "North Park Fairview Terraces":"73681268 / 73681268 / 9199142201 / 9156141517",
-        "North Park Eton Centris":"9199138759 / 9567149997",
-        "North Park Hypermarket FTI":"88693203 / 9199134577 / 9771397119",
-        "North Park Greenfield":"86613868 / 86613868 / 9199142457 / 9156136143",
-        "North Park Makati Ave.":"8900264 / 8905952 / 88963482 / 88905674 / 76250314 / 88905952 / 9199138757 / 9166714701",
-        "North Park Market Market":"88561498 / 88561499 / 88479464 / 88561499 / 9199146897 / 9156136187",
-        "North Park Tomas Morato":"87094152 / 87094152 / 9199142239 / 9156136078",
-        "North Park Ortigas Home Depot":"86378057 / 86377365 / 85701712 / 86378163 / 85701712 / 9199134571 / 9156123848",
-        "North Park Paseo De Roces":"89958378 / 89970351 / 89958378 / 9199142458 / 9952314692",
-        "North Park P. Guevarra":"87212759 / 87213413 / 872459439 / 79544957 / 83710824 / 87212759 / 9190750274 / 9156136120",
-        "North Park Bicutan":"87430232 / 88225539 / 88243187 / 87430232 / 9199142208 / 9156136092",
-        "North Park Santana Grove":"02-70011180 / 270011180 / 9285056982",
-        "North Park Hypermarket Makati":"88693206 / 88693206 / 9199134579 / 9156136205",
-        "North Park Muntinlupa":"88225532 / 8225539 / 82919141 / 88561166 / 88561323 / 9199142219 / 9267082306",
-        "North Park Westgate":"87712318 / 87712319 / 87712318 / 9199148207 / 9156136117",
-        "North Park Valenzuela":"88644744 / 83644744 / 9285057068 / 9267082387"
+        "North Park SM Hypermart Antipolo - HMA":"84251921 / 85709483 / 85709483 / 09199146896 / 09156141510",
+        "North Park Banawe - BNW":"82440919 / 87117648 / 09199142203 / 09156136104",
+        "North Park G. Araneta (QI) - AAV":"87111338 / 87111338 / 09285021173 / 09156123830",
+        "North Park SM Hypermart Cainta - HMC":"85713311 / No landline / 09199146891 / 09156141520",
+        "North Park Jetti Macapagal - MAC":"09688548561",
+        "North Park Hypermarket EDSA - HME":"84414356 / 09199134578 / 09156136198",
+        "North Park Fairview Terraces - FVT":"73681268 / 73681268 / 09199142201 / 09156141517",
+        "North Park Eton Centris - CTS":"09199138759 / 09567149997",
+        "North Park Hypermarket FTI - HMF":"88693203 / 09199134577 / 09771397119",
+        "North Park Greenfield - GFD":"86613868 / 86613868 / 09199142457 / 09156136143",
+        "North Park Makati Ave. - ARN":"8900264 / 8905952 / 88963482 / 88905674 / 76250314 / 88905952 / 09199138757 / 09166714701",
+        "North Park Market Market - MKT":"88561498 / 88561499 / 88479464 / 88561499 / 09199146897 / 09156136187",
+        "North Park Tomas Morato - TOM":"87094152 / 87094152 / 09199142239 / 09156136078",
+        "North Park Ortigas Home Depot - OHD":"86378057 / 86377365 / 85701712 / 86378163 / 85701712 / 09199134571 / 09156123848",
+        "North Park Paseo De Roces - PRO":"89958378 / 89970351 / 89958378 / 09199142458 / 09952314692",
+        "North Park P. Guevarra - PGV":"87212759 / 87213413 / 872459439 / 79544957 / 83710824 / 87212759 / 09190750274 / 09156136120",
+        "North Park Bicutan - BIC":"87430232 / 88225539 / 88243187 / 87430232 / 09199142208 / 09156136092",
+        "North Park Santana Grove - SGV":"02-70011180 / 270011180 / 09285056982",
+        "North Park Hypermarket Makati - HMM":"88693206 / 88693206 / 09199134579 / 09156136205",
+        "North Park Muntinlupa - MUN":"88225532 / 8225539 / 82919141 / 88561166 / 88561323 / 09199142219 / 09267082306",
+        "North Park Westgate - WST":"87712318 / 87712319 / 87712318 / 09199148207 / 09156136117",
+        "North Park Valenzuela - VAL":"88644744 / 83644744 / 09285057068 / 09267082387"
+        
     };
 
     // Create floating branch buttons
