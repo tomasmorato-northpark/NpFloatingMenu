@@ -29,16 +29,30 @@ javascript:(function(){
         "North Park Valenzuela":"88644744 / 83644744 / 09285057068 / 09267082387"
     };
 
-    // Branch codes
-    const branchCodes = {
-        "North Park SM Hypermart Antipolo":"HMA","North Park Banawe":"BNW","North Park G. Araneta (QI)":"AAV",
-        "North Park SM Hypermart Cainta":"HMC","North Park Jetti Macapagal":"MAC","North Park Hypermarket EDSA":"HME",
-        "North Park Fairview Terraces":"FVT","North Park Eton Centris":"CTS","North Park Hypermarket FTI":"HMF",
-        "North Park Greenfield":"GFD","North Park Makati Ave.":"ARN","North Park Market Market":"MKT",
-        "North Park Tomas Morato":"TOM","North Park Ortigas Home Depot":"OHD","North Park Paseo De Roces":"PRO",
-        "North Park P. Guevarra":"PGV","North Park Bicutan":"BIC","North Park Santana Grove":"SGV",
-        "North Park Hypermarket Makati":"HMM","North Park Muntinlupa":"MUN","North Park Westgate":"WST",
-        "North Park Valenzuela":"VAL"
+    // Branch monitoring links
+    const branches = {
+        "HMA":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=1",
+        "AAV":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=2",
+        "BNW":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=3",
+        "HMC":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=4",
+        "MAC":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=5",
+        "HME":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=6",
+        "CTS":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=7",
+        "FVT":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=8",
+        "HMF":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=9",
+        "GFD":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=10",
+        "MKT":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=11",
+        "ARN":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=12",
+        "TOM":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=13",
+        "OHD":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=14",
+        "PRO":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=15",
+        "PGV":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=16",
+        "SGV":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=17",
+        "BIC":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=18",
+        "HMM":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=19",
+        "MUN":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=20",
+        "VAL":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=21",
+        "WST":"https://npdelivery2024-staging.pti.ph/monitoring?store_id=22"
     };
 
     // Floating menu buttons (top-right, 2 columns)
@@ -53,9 +67,9 @@ javascript:(function(){
     menu.style.gap = "6px";
     menu.style.zIndex = "999999";
 
-    for(let branch in branchCodes){
+    for(let branch in branches){
         const btn = document.createElement("button");
-        btn.innerText = branchCodes[branch];
+        btn.innerText = branch;
         btn.style.padding = "6px 8px";
         btn.style.borderRadius = "8px";
         btn.style.border = "1px solid gold";
@@ -65,7 +79,7 @@ javascript:(function(){
         btn.style.cursor = "pointer";
         btn.onmouseover = ()=>{btn.style.background="gold"; btn.style.color="black";};
         btn.onmouseout = ()=>{btn.style.background="black"; btn.style.color="white";};
-        btn.onclick = ()=>window.open(`https://npdelivery2024-staging.pti.ph/monitoring?store_id=${branchCodes[branch]}`, "_blank");
+        btn.onclick = ()=>window.open(branches[branch], "_blank");
         menu.appendChild(btn);
     }
     document.body.appendChild(menu);
@@ -95,10 +109,9 @@ javascript:(function(){
     const contactStr = contacts[branchNameText] || "No contact info";
     const nums = contactStr.split(/[\/ ]+/).filter(n=>n.trim()!=="");
 
-    let html = `<strong>${branchNameText}</strong> - ${branchCodes[branchNameText] || ""}<br><br>`;
+    let html = `<strong>${branchNameText}</strong><br><br>`;
     nums.forEach(n=>{
-        html += `<a href="tel:${n}" style="color:gold;text-decoration:none;display:block;margin-bottom:4px;">${n}</a>`;
-        html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:block;text-align:center;margin-bottom:6px;text-decoration:none;">Viber Chat</a>`;
+        html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:block;text-align:center;margin-bottom:6px;text-decoration:none;">Viber Chat ${n}</a>`;
     });
 
     box.innerHTML = html;
