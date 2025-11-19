@@ -1,6 +1,7 @@
 javascript:(function(){
-    // Remove old menu if exists
+    // Remove old boxes if exist
     document.getElementById("npFloatingMenu")?.remove();
+    document.getElementById("npFloatingMenuButtons")?.remove();
 
     // Branch contacts
     const contacts = {
@@ -28,31 +29,52 @@ javascript:(function(){
         "North Park Valenzuela":"88644744 / 83644744 / 09285057068 / 09267082387"
     };
 
-    // Identify branch from website
+    // Locate branch name on page
     const branchEl = document.querySelector("h3.text-gray-800");
     const branchNameText = branchEl ? branchEl.innerText.trim() : "Branch Not Found";
 
-    // Build floating contact box
+    // Create contact box
     const box = document.createElement("div");
     box.id = "npFloatingMenu";
     box.style.position = "fixed";
-
-    /* --- Position: Center horizontally, 1 inch from top (96px) --- */
-    box.style.top = "96px"; 
+    box.style.top = "96px"; // 1 inch from top
     box.style.left = "50%";
     box.style.transform = "translateX(-50%)";
-
-    /* --- Rectangle shape --- */
-    box.style.width = "340px";
+    box.style.width = "350px"; 
     box.style.background = "black";
     box.style.color = "gold";
-    box.style.padding = "16px 20px";
+    box.style.padding = "16px";
     box.style.border = "2px solid gold";
-    box.style.borderRadius = "12px";
+    box.style.borderRadius = "10px";
     box.style.fontWeight = "600";
     box.style.zIndex = "999999";
     box.style.boxShadow = "0 0 20px rgba(255,215,0,0.4)";
-    box.style.fontFamily = "Arial,sans-serif";
+    box.style.fontFamily = "Arial, sans-serif";
     box.style.fontSize = "14px";
+    box.style.textAlign = "center";
 
-    const contactStr = contacts[branchNameText] || "No contac
+    // Prepare contacts
+    const contactStr = contacts[branchNameText] || "No contact info";
+    const nums = contactStr.split(/[\/ ]+/).filter(n=>n.trim()!=="");
+
+    let html = `<strong style="font-size:16px;">${branchNameText}</strong><br><br>`;
+    nums.forEach(n=>{
+        html += `
+            <a href="viber://chat?number=${n}"
+                style="
+                    color: white;
+                    background:#59267c;
+                    padding:8px;
+                    border-radius:6px;
+                    display:block;
+                    margin-bottom:8px;
+                    text-decoration:none;
+                ">
+                Viber Chat ${n}
+            </a>
+        `;
+    });
+
+    box.innerHTML = html;
+    document.body.appendChild(box);
+})();
