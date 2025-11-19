@@ -71,7 +71,11 @@ javascript:(function(){
     const contactStr = contacts[branchNameText] || "No contact info";
     const nums = contactStr.split(/[\/ ]+/).filter(n=>n.trim()!=="");
 
-    let html = `<strong>${branchNameText}</strong><br><br>`;
+    let html = `<div style="display:flex;justify-content:flex-end;gap:6px;margin-bottom:8px;">
+                    <button id="hideBtn" style="background:#59267c;color:white;border:none;padding:2px 6px;border-radius:4px;cursor:pointer;">👁️</button>
+                    <button id="closeBtn" style="background:red;color:white;border:none;padding:2px 6px;border-radius:4px;cursor:pointer;">×</button>
+                </div>`;
+    html += `<strong>${branchNameText}</strong><br><br>`;
     nums.forEach(n=>{
         const formatted = formatNumber(n);
         html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:inline-block;margin:2px 4px;text-decoration:none;">${formatted}</a>`;
@@ -80,11 +84,25 @@ javascript:(function(){
     box.innerHTML = html;
     document.body.appendChild(box);
 
+    // Close button
+    document.getElementById("closeBtn").onclick = ()=>box.remove();
+
+    // Hide/Unhide button
+    let hidden = false;
+    const hideBtn = document.getElementById("hideBtn");
+    hideBtn.onclick = ()=>{
+        hidden = !hidden;
+        box.querySelectorAll("a, strong").forEach(el=>{
+            el.style.display = hidden ? "none" : "inline-block";
+        });
+    };
+
     // Make box draggable
     let isDragging = false;
     let offsetX = 0, offsetY = 0;
 
     box.addEventListener("mousedown", (e)=>{
+        if(e.target.tagName === "BUTTON") return; // ignore drag when clicking buttons
         isDragging = true;
         offsetX = e.clientX - box.getBoundingClientRect().left;
         offsetY = e.clientY - box.getBoundingClientRect().top;
