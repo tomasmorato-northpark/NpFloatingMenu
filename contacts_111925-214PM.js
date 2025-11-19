@@ -1,7 +1,6 @@
 javascript:(function(){
     // Remove old menu if exists
     document.getElementById("npFloatingMenu")?.remove();
-    document.getElementById("npFloatingMenuButtons")?.remove();
 
     // Branch contacts
     const contacts = {
@@ -33,13 +32,13 @@ javascript:(function(){
     const branchEl = document.querySelector("h3.text-gray-800");
     const branchNameText = branchEl ? branchEl.innerText.trim() : "Branch Not Found";
 
-    // Floating contact info box (bottom center)
+    // Create contact box
     const box = document.createElement("div");
     box.id = "npFloatingMenu";
     box.style.position = "fixed";
     box.style.bottom = "20px";
     box.style.left = "50%";
-    box.style.transform = "translateX(-50%)"; // center horizontally
+    box.style.transform = "translateX(-50%)";
     box.style.maxWidth = "90%";
     box.style.background = "black";
     box.style.color = "gold";
@@ -53,6 +52,7 @@ javascript:(function(){
     box.style.fontFamily = "Arial,sans-serif";
     box.style.fontSize = "14px";
     box.style.textAlign = "center";
+    box.style.cursor = "grab"; // indicate draggable
 
     const contactStr = contacts[branchNameText] || "No contact info";
     const nums = contactStr.split(/[\/ ]+/).filter(n=>n.trim()!=="");
@@ -65,9 +65,38 @@ javascript:(function(){
     box.innerHTML = html;
     document.body.appendChild(box);
 
-    // Make box responsive on window resize
-    window.addEventListener("resize", ()=>{
-        box.style.left = "50%";
-        box.style.transform = "translateX(-50%)";
+    // Make box draggable
+    let isDragging = false;
+    let offsetX = 0, offsetY = 0;
+
+    box.addEventListener("mousedown", (e)=>{
+        isDragging = true;
+        offsetX = e.clientX - box.getBoundingClientRect().left;
+        offsetY = e.clientY - box.getBoundingClientRect().top;
+        box.style.cursor = "grabbing";
+        box.style.transition = "none"; // remove smooth transition while dragging
     });
+
+    window.addEventListener("mousemove", (e)=>{
+        if(!isDragging) return;
+        let x = e.clientX - offsetX;
+        let y = e.clientY - offsetY;
+
+        // Keep inside viewport
+        x = Math.max(0, Math.min(window.innerWidth - box.offsetWidth, x));
+        y = Math.max(0, Math.min(window.innerHeight - box.offsetHeight, y));
+
+        box.style.left = x + "px";
+        box.style.top = y + "px";
+        box.style.bottom = "auto"; // remove bottom positioning while dragging
+        box.style.transform = "none";
+    });
+
+    window.addEventListener("mouseup", ()=>{
+        if(isDragging){
+            isDragging = false;
+            box.style.cursor = "grab";
+        }
+    });
+
 })();
