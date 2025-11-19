@@ -28,6 +28,20 @@ javascript:(function(){
         "North Park Valenzuela":"88644744 / 83644744 / 09285057068 / 09267082387"
     };
 
+    // Function to format numbers
+    function formatNumber(n){
+        if(!/^\d+$/.test(n)) return n; // skip non-numeric (like "No landline")
+        if(n.length === 7 || n.length === 8){ // landline
+            return n.replace(/(\d)(\d{3})(\d{3,4})/, "$1-$2-$3");
+        } else if(n.length === 10 && n.startsWith("9")){ // mobile without leading 0
+            return n.replace(/(\d{4})(\d{3})(\d{3})/, "$1-$2-$3");
+        } else if(n.length === 11 && n.startsWith("09")){ // mobile
+            return n.replace(/(\d{4})(\d{3})(\d{4})/, "$1-$2-$3");
+        } else { // fallback
+            return n;
+        }
+    }
+
     // Get branch name
     const branchEl = document.querySelector("h3.text-gray-800");
     const branchNameText = branchEl ? branchEl.innerText.trim() : "Branch Not Found";
@@ -52,14 +66,15 @@ javascript:(function(){
     box.style.fontFamily = "Arial,sans-serif";
     box.style.fontSize = "14px";
     box.style.textAlign = "center";
-    box.style.cursor = "grab"; // indicate draggable
+    box.style.cursor = "grab";
 
     const contactStr = contacts[branchNameText] || "No contact info";
     const nums = contactStr.split(/[\/ ]+/).filter(n=>n.trim()!=="");
 
     let html = `<strong>${branchNameText}</strong><br><br>`;
     nums.forEach(n=>{
-        html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:inline-block;margin:2px 4px;text-decoration:none;">${n}</a>`;
+        const formatted = formatNumber(n);
+        html += `<a href="viber://chat?number=${n}" style="color:white;background:#59267c;padding:6px 8px;border-radius:6px;display:inline-block;margin:2px 4px;text-decoration:none;">${formatted}</a>`;
     });
 
     box.innerHTML = html;
@@ -74,7 +89,7 @@ javascript:(function(){
         offsetX = e.clientX - box.getBoundingClientRect().left;
         offsetY = e.clientY - box.getBoundingClientRect().top;
         box.style.cursor = "grabbing";
-        box.style.transition = "none"; // remove smooth transition while dragging
+        box.style.transition = "none";
     });
 
     window.addEventListener("mousemove", (e)=>{
@@ -82,13 +97,12 @@ javascript:(function(){
         let x = e.clientX - offsetX;
         let y = e.clientY - offsetY;
 
-        // Keep inside viewport
         x = Math.max(0, Math.min(window.innerWidth - box.offsetWidth, x));
         y = Math.max(0, Math.min(window.innerHeight - box.offsetHeight, y));
 
         box.style.left = x + "px";
         box.style.top = y + "px";
-        box.style.bottom = "auto"; // remove bottom positioning while dragging
+        box.style.bottom = "auto";
         box.style.transform = "none";
     });
 
