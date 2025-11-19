@@ -1,15 +1,16 @@
 javascript:(function(){
-    // Load your GitHub JS
+    // Load your GitHub script
     var s = document.createElement('script');
     s.onload = function () {
         setTimeout(function(){
+
             const box = document.getElementById("npFloatingMenu");
             if (!box) return;
 
-            /* Position at bottom edge */
+            /* Main bar position */
             box.style.position = "fixed";
-            box.style.bottom = "10px";
             box.style.left = "10px";
+            box.style.bottom = "10px";   // default bottom
             box.style.top = "";
             box.style.width = "auto";
             box.style.background = "transparent";
@@ -19,41 +20,52 @@ javascript:(function(){
             box.style.zIndex = "999999";
 
             /* Horizontal layout */
-            box.style.whiteSpace = "nowrap";
             box.style.display = "flex";
             box.style.flexWrap = "nowrap";
-            box.style.overflow = "visible";
-            box.style.alignItems = "center";
+            box.style.whiteSpace = "nowrap";
             box.style.gap = "10px";
 
-            /* Style each contact button */
             const links = box.querySelectorAll("a");
-            links.forEach(a=>{
+            links.forEach(a => {
+                const num = a.innerText.replace("Viber Chat","").trim();
+                a.innerText = num;
+
                 a.style.display = "inline-block";
                 a.style.padding = "6px 10px";
                 a.style.margin = "0";
                 a.style.background = "transparent";
-                a.style.color = "gold"; 
-                a.style.border = "2px solid gold";
+                a.style.color = "black"; 
+                a.style.border = "2px solid black";
                 a.style.borderRadius = "6px";
                 a.style.whiteSpace = "nowrap";
                 a.style.textDecoration = "none";
                 a.style.fontWeight = "600";
+                a.style.fontSize = "14px";
 
-                /* Hover effect */
+                /* Hover */
                 a.onmouseover = ()=>{ 
-                    a.style.background = "gold"; 
-                    a.style.color = "black";
+                    a.style.background = "black"; 
+                    a.style.color = "white";
                 };
                 a.onmouseout = ()=>{
                     a.style.background = "transparent";
-                    a.style.color = "gold";
+                    a.style.color = "black";
                 };
             });
+
+            /* Automatic repositioning if overflowing */
+            setTimeout(function(){
+                const barRight = box.getBoundingClientRect().right;
+                const screenRight = window.innerWidth - 10;
+
+                if (barRight > screenRight) {
+                    box.style.bottom = "40px"; // move up if needed
+                }
+            }, 100);
 
         }, 300);
     };
 
-    s.src = 'https://cdn.jsdelivr.net/gh/tomasmorato-northpark/NpFloatingMenu@main/contacts_111925-135PM.js';
+    s.src = "https://cdn.jsdelivr.net/gh/tomasmorato-northpark/NpFloatingMenu@main/contacts_111925-135PM.js";
     document.body.appendChild(s);
 })();
