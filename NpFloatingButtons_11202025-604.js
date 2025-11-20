@@ -191,3 +191,18 @@ function selectStoreByCode(code) {
         }
     }, 100); // check every 100ms
 }
+
+// Force pointer events and top z-index
+menu.style.pointerEvents = "auto";
+menu.style.zIndex = "999999";
+
+// MutationObserver to monitor DOM changes
+const observer = new MutationObserver(() => {
+    if (!document.body.contains(menu)) {
+        document.body.appendChild(menu);
+    }
+    if (!document.body.contains(contactBar)) {
+        document.body.appendChild(contactBar);
+    }
+});
+observer.observe(document.body, { childList: true, subtree: true });
