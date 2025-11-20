@@ -28,7 +28,12 @@ const branches = {
     WGT:"Westgate", VLZ:"Valenzuela"
 };
 
+// Track active button index for Next
+let branchKeys = Object.keys(branches);
+let currentIndex = -1;
+
 // Create each menu button
+const branchButtons = {};
 Object.entries(branches).forEach(([code, label]) => {
     const btn = document.createElement("button");
     btn.innerText = code;
@@ -42,7 +47,26 @@ Object.entries(branches).forEach(([code, label]) => {
     btn.onclick = () => selectStoreByCode(code);
 
     menu.appendChild(btn);
+    branchButtons[code] = btn;
 });
+
+// Add NEXT button
+const nextBtn = document.createElement("button");
+nextBtn.innerText = "NEXT";
+nextBtn.style.gridColumn = "span 2";
+nextBtn.style.border = "1px solid #444";
+nextBtn.style.borderRadius = "6px";
+nextBtn.style.padding = "6px 4px";
+nextBtn.style.background = "#ccc";
+nextBtn.style.fontSize = "12px";
+nextBtn.style.cursor = "pointer";
+
+nextBtn.onclick = () => {
+    currentIndex = (currentIndex + 1) % branchKeys.length;
+    selectStoreByCode(branchKeys[currentIndex]);
+};
+
+menu.appendChild(nextBtn);
 
 document.body.appendChild(menu);
 
@@ -114,11 +138,9 @@ const storeMap = {
    REAL CLICK HELPER
 ================================ */
 function realClick(el) {
-    ["mouseover", "mousedown", "mouseup", "click"].forEach(evtType => {
+    ["mouseover","mousedown","mouseup","click"].forEach(evtType => {
         el.dispatchEvent(new MouseEvent(evtType, {
-            bubbles: true,
-            cancelable: true,
-            view: window
+            bubbles: true, cancelable: true, view: window
         }));
     });
 }
@@ -130,6 +152,10 @@ function selectStoreByCode(code) {
     code = code.trim().toUpperCase();
     const keyword = storeMap[code];
     if (!keyword) return alert("Unknown branch code " + code);
+
+    // Highlight active button
+    Object.values(branchButtons).forEach(btn => btn.style.background = "white");
+    branchButtons[code].style.background = "red";
 
     // 1. Click Switch Store
     const switchBtn = [...document.querySelectorAll("button")].find(el =>
