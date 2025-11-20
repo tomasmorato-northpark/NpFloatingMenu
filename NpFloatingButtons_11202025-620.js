@@ -1,3 +1,10 @@
+// Clear any old global references (optional)
+window.branchButtons = null;
+window.branchKeys = null;
+window.currentIndex = null;
+
+
+
 /* ================================
    REMOVE OLD FLOATING UI
 ================================ */
