@@ -124,14 +124,14 @@ const contacts = {
    BRANCH CODE → NAME MAP
 ================================ */
 const storeMap = {
-    ANT: "Antipolo", BNW: "Banawe", GAR: "G. Araneta",
-    CAI: "Cainta", JET: "Jetti", EDSA: "EDSA",
-    FVW: "Fairview", ETC: "Eton", FTI: "FTI",
-    GRF: "Greenfield", MKA: "Makati Ave", MMK: "Market Market",
-    TMR: "Tomas Morato", OHD: "Ortigas Home Depot",
-    PDR: "Paseo", PGV: "P. Guevarra", BIC: "Bicutan",
-    SNG: "Santana", MKH: "Hypermarket Makati",
-    MUN: "Muntinlupa", WGT: "Westgate", VLZ: "Valenzuela"
+    HMA: "Antipolo", BNW: "Banawe", AAV: "G. Araneta",
+    HMC: "Cainta", MAC: "Jetti", HME: "EDSA",
+    FVT: "Fairview", CTS: "Eton", HMF: "FTI",
+    GFD: "Greenfield", ARN: "Makati Ave", MKT: "Market Market",
+    TOM: "Tomas Morato", OHD: "Ortigas Home Depot",
+    PRO: "Paseo", PGV: "P. Guevarra", BIC: "Bicutan",
+    SGV: "Santana", HMM: "Hypermarket Makati",
+    MUN: "Muntinlupa", WST: "Westgate", VAL: "Valenzuela"
 };
 
 /* ================================
