@@ -145,6 +145,45 @@ function realClick(el) {
     });
 }
 
+// 1️⃣ Add Screenshot Button
+const screenshotBtn = document.createElement("button");
+screenshotBtn.innerText = "SCREENSHOT";
+screenshotBtn.style.gridColumn = "span 2";
+screenshotBtn.style.border = "1px solid #444";
+screenshotBtn.style.borderRadius = "6px";
+screenshotBtn.style.padding = "6px 4px";
+screenshotBtn.style.background = "#4caf50";
+screenshotBtn.style.color = "white";
+screenshotBtn.style.fontSize = "12px";
+screenshotBtn.style.cursor = "pointer";
+
+screenshotBtn.onclick = async () => {
+    // Load html2canvas if not already loaded
+    if (!window.html2canvas) {
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
+        document.body.appendChild(script);
+        await new Promise(resolve => script.onload = resolve);
+    }
+
+    // Take screenshot
+    html2canvas(document.body).then(canvas => {
+        canvas.toBlob(async blob => {
+            try {
+                await navigator.clipboard.write([
+                    new ClipboardItem({ "image/png": blob })
+                ]);
+                alert("Screenshot copied to clipboard!");
+            } catch (err) {
+                alert("Failed to copy screenshot: " + err);
+            }
+        });
+    });
+};
+
+menu.appendChild(screenshotBtn);
+
+
 /* ================================
    SELECT STORE BY CODE
 ================================ */
