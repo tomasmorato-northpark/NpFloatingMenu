@@ -20,12 +20,12 @@ menu.style.background = "transparent";
 menu.style.padding = "5px";
 
 const branches = {
-    ANT:"Antipolo", BNW:"Banawe", GAR:"G. Araneta", CAI:"Cainta", 
-    JET:"Jetti", EDSA:"EDSA", FVW:"Fairview", ETC:"Centris",
-    FTI:"FTI", GRF:"Greenfield", MKA:"Makati Ave", MMK:"MarketMarket",
-    TMR:"TomasMorato", OHD:"OHD", PDR:"PaseoRoces", PGV:"PGuevarra",
-    BIC:"Bicutan", SNG:"Santana", MKH:"MakatiHyp", MUN:"Muntinlupa",
-    WGT:"Westgate", VLZ:"Valenzuela"
+    HMA:"Antipolo", BNW:"Banawe", AAV:"G. Araneta", HMC:"Cainta", 
+    MAC:"Jetti", HME:"EDSA", FVT:"Fairview", CTS:"Centris",
+    HMF:"FTI", GFD:"Greenfield", ARN:"Makati Ave", MKT:"MarketMarket",
+    TOM:"TomasMorato", OHD:"OHD", PRO:"PaseoRoces", PGV:"PGuevarra",
+    BIC:"Bicutan", SGV:"Santana", HMM:"MakatiHyp", MUN:"Muntinlupa",
+    WST:"Westgate", VAL:"Valenzuela"
 };
 
 // Track active button index for Next
